@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>实例化多个vue对象</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+<style type="text/css">
+
+</style>
+<body>
+
+<div id="app-one">
+    <greeting></greeting>
+</div>
+<div id="app-two">
+    <greeting></greeting>
+</div>
+</body>
+<script type="text/javascript">
+    // var data = {
+    //     name: 'ooo'
+    // }
+    Vue.component('greeting', {
+        template: `<p>{{name}}: this is a new vue component
+        <button v-on:click="changeName">改名</button>
+        </p>`,
+        data() {
+            return {
+                name: "luhan0"
+            };
+        },
+        methods: {
+            changeName: function () {
+                this.name = "hello";
+            }
+        }
+    });
+    new Vue({
+        el: '#app-one',
+        data: {
+            title: 'one'
+        }
+    });
+    new Vue({
+        el: '#app-two',
+        data: {
+            title: 'two'
+        }
+
+    });
+</script>
+
+</html>

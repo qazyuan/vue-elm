@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>vue基础</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <style type="text/css">
+        #canvas {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #ddd;
+            text-align: center;
+            margin: auto;
+        }
+        span {
+            background: red;
+            display: inline-block;
+            padding: 10px;
+            color: #fff;
+            margin: 10px 0;
+        }
+        .changeColor span  {
+            background: green;
+        }
+        .changeLength span:after {
+            content: 'length';
+            margin-left: 50px;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div id="vue-app">
+        <p>{{ name }}</p>
+        <p>{{ job }}</p>
+        <p>{{ greet('morning') }}</p>
+        <a v-on:click.prevent='' :href="websit">web开发</a>
+        <input type="text" name="" :value="name">
+        <p v-html="webTag"></p>
+        <h1>events</h1>
+        <button @click="minus(1)">减1</button>
+        <button @click.once="add(1)">加1</button>
+        <button @dblclick="minus(10)">减1</button>
+        <button @dblclick="add(10)">加1</button>
+        <p>age is {{age}}</p>
+        <div id="canvas" @mousemove="undate">
+            {{x}}, {{y}}
+            <span @mousemove.stop="">stopmove</span>
+        </div>
+        <h2>键盘事件</h2>
+        <div>
+            <h5>请输入你的名字</h5>
+            <input ref="name" type="text" name="" v-model="name">
+            <span>{{name}}</span>
+        </div>
+        <div>
+            <h5>请输入你的年龄</h5>
+            <input ref="age" type="text" name="" v-model="age">
+            <span>{{age}}</span>
+        </div>
+    </div> -->
+
+    <!-- 计算属性 -->
+    <!-- <div id="vue-app">
+        <h1>computed计算属性</h1>
+        <button v-on:click="a++">A++</button>
+        <button v-on:click="b++">B++</button>
+        <p>A - {{a}}</p>
+        <p>B - {{b}}</p>
+        <p>{{addToA}}</p>
+        <p>{{addToB}}</p>
+    </div> -->
+    <!-- 动态绑定class -->
+    <!-- <div id="vue-app">
+        <h1>动态绑定class</h1>
+        <button v-on:click="colorChange">changeColor</button>
+        <h2 v-bind:class="{changeColor: changeColor}"><span>实例1</span></h2>
+        <button v-on:click="changeDouble">changeBoth</button>
+        <h2 v-bind:class="changeStyle"><span>实例2</span></h2>
+    </div> -->
+    <!-- <div id="vue-app">
+        <h1>v-if\ v-show\ v-else-if</h1>
+        <button v-on:click="toggleError">toggleError</button>
+        <button v-on:click="toggleSuccess">toggleSuccess</button>
+        <p v-show="Error">网络连接错误</p>
+        <p v-else-if="Success">网络连接成功</p>
+    </div> -->
+    <!-- <div id="vue-app">
+        <h2>v-for</h2>
+        <p v-for="item in charactors">{{item}}</p>
+        <template v-for="item in charactors"> {{item}} </template>
+        <div v-for="(user, index) in list">
+            <p>{{index+1}}.name: {{user.name}}---age: {{user.age}}</p>
+        </div>
+        <div v-for="(user, index) in list">
+            {{index+1}}<p v-for="(value, key) in user"> {{key}} : {{value}}</p>
+        </div>
+    </div> -->
+    <script type="text/javascript" src="js/app.js"></script>
+</body>
+
+</html>

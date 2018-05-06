@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        css-demo
+    </title>
+    <style type="text/css">
+      .tangle {
+        width: 0;
+
+        height: 0;
+
+        border-top: 40px solid transparent;
+
+        border-left: 40px solid transparent;
+
+        border-right: 40px solid transparent;
+
+        border-bottom: 40px solid #ff0000;
+      }
+    </style>
+</head>
+<body>
+  <div class="tangle"></div>
+    <script type="text/javascript">
+        // function User(name, pass) {
+        //     this.name = name;
+        //     this.pass = pass;
+        // }
+
+        // User.prototype.showName = function () {
+        //     console.log(this.name);
+        // }
+
+        // User.prototype.showPass = function () {
+        //     console.log(this.pass);
+        // }
+
+        // var user = new User('yang', '123456');
+        // user.showName();
+        // user.showPass();
+
+
+        class User {
+            constructor (name, pass) {
+                this.name = name;
+                this.pass = pass;
+            }
+
+            showName() {
+                console.log(this.name);
+            }
+
+            showPass() {
+                console.log(this.pass);
+            }
+        }
+
+        class VipUser extends User {
+            constructor (name, pass, level) {
+                super(name, pass);
+                this.level = level;
+            }
+
+            showLevel(){
+                console.log(this.level)
+            }
+        }
+
+        var user = new VipUser('yang', '123456', '4');
+        user.showName();
+        user.showPass();
+        user.showLevel();
+
+
+    </script>
+</body>
+</html>

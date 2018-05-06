@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>demo</title>
+</head>
+<body>
+<div id="app">
+
+    <list-item
+      v-for="item in lists"
+      v-bind:todo="item">
+    </list-item>
+</div>
+
+</body>
+<script type="text/javascript" src="common/js/vue.js"></script>
+<script type="text/javascript">
+    // Vue.component('list-item', {
+    //     props: ['todo'],
+    //     template: '<li>{{ todo.name }}</li>'
+    // });
+    // // Vue.component('todo-item', {
+    // //     props: ['todo'],
+    // //     template: '<li>{{ todo.text }}</li>'
+    // // });
+
+
+    // var app = new Vue({
+    //     el: '#app',
+    //     data: {
+    //         lists:[
+    //             {id: '11', name: 'name11'},
+    //             {id: '22', name: 'name22'},
+    //             {id: '33', name: 'name33'},
+    //         ],
+    //         groceryList: [
+    //           { id: 0, text: '蔬菜' },
+    //           { id: 1, text: '奶酪' },
+    //           { id: 2, text: '随便其它什么人吃的东西' }
+    //         ]
+    //     }
+    // })
+
+    let objTest = {
+        "name": 'yang',
+        'age': null,
+        'title': 'yyyy'
+    };
+    let result = objTest.filter((item) => {
+        return objTest[item] != null;
+    });
+    console.log(result);
+</script>
+<script type="text/javascript">
+    // yield可以传参
+
+</script>
+</html>
