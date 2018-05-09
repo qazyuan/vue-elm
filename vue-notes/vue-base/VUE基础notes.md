@@ -30,13 +30,125 @@
 
         methods执行所有的方法
         computed当虚拟dom和实际dom不一致时才会执行里面的func
-### 动态绑定class
-    可以通过点击事件等触发样式的改变，用computed里面的属性来实时更改样式
+- 当一个功能能用watch\computed\methods实现时，优先使用computed
+
+### 动态绑定样式
+可以通过点击事件等触发样式的改变，用computed里面的属性来实时更改样式
+    
+- class的数组绑定
+    
+```
+.init {
+    border: 1px solid #555;
+}
+.actived {
+    color: red;
+}
+<!--通过给数组里面的元素赋值来加载样式-->
+<h2 id="app" @click="changeClassEvent" :class="[init, actived]">hello world</h2>
+
+new Vue({
+    el: '#app',
+    data: {
+        init: 'init',
+        actived: ''
+    },
+    methods: {
+        changeClassEvent: function () {
+            this.actived = (this.actived == 'actived' ? '' : 'actived');
+        }
+    }
+})
+```
+- class的对象绑定
+    
+```
+<!--通过对象的值来判断是否加载样式-->
+<h2 id="app" @click="changeClassEvent" :class="{init: isActived, actived: isActived}">hello world</h2>
+
+new Vue({
+    el: '#app',
+    data: {
+        isActived: false
+    },
+    methods: {
+        changeClassEvent: function () {
+            this.isActived = !this.isActived;
+        }
+    }
+})
+```
+- 内联样式style绑定
+
+```
+与绑定class一样可以绑定数组和对象
+在绑定数组中数组中的每个元素也是对象
+<h2 id="app3" @click="changeClass" :style="[styleObj1, styleObj2]">hello, world</h2>
+new Vue({
+    el: '#app3',
+    data: {
+        styleObj1: {
+            color: ''
+        },
+        styleObj2: {
+            'font-size': '12px'
+        }
+    },
+    methods: {
+        changeClass: function () {
+            let color = this.styleObj1.color;
+            let size = this.styleObj2['font-size'];
+            this.styleObj1.color = (color == 'red' ? '' : 'red');
+            this.styleObj2['font-size'] = (size == '12px' ? '20px' : '12px')
+        }
+    }
+});
+```
+ 
+    
 
     
-### v-if v-else-if v-show
-    不同之处： v-show有dom结构，display: none
-    
+### 条件渲染 v-if v-else-if v-show
+- 不同之处： v-show有dom结构，display: none
+- v-if  v-else必须连在一起使用，中间不能插入其他dom结构
+- 元素标签加key值，vue不会复用该dom结构
+
+```
+<div id="appIf">
+    <h4 v-if="show=='a'">this is A</h4>
+    <!--<span>333</span> 中间插入dom结构会报错-->
+    <h4 v-else-if="show=='b'">this is B</h4>
+    <h4 v-else>this is another one</h4>
+</div>
+new Vue({
+    el: '#appIf',
+    data: {
+        show: 'a'
+    }
+});
+```
+
+### 列表渲染
+- pop\push\shift\unshift\splice\sort\reverse这几个方法操作数组，页面数据会立即发生变化
+- 直接改变数组的引用也可以更新页面数据
+- <template></template> 模板占位符，页面不会渲染出来
+- 对象的循环 vue.set(objName, key, value)给对象添加值
+
+```
+<div id="appIf">
+    <span v-for="item in list">{{item}}-----</span>
+</div>
+var vm = new Vue({
+    el: '#appIf',
+    data: {
+        list:[1, 2, 3, 4],
+        show: 'a'
+    }
+});
+vm.$set(vm.list, 1, '333') //改变list[1]的值
+Vue.set(vm.list, 1, '333') //改变list[1]的值
+```
+
     
 ### 初始化多个vue的实例化对象
 
@@ -136,7 +248,3 @@ Vue.component('greeting', {
         mode: 'history'
     });
 ```
-
-
-
-    
