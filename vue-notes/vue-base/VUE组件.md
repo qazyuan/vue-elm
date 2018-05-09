@@ -30,6 +30,8 @@
 
         methods执行所有的方法
         computed当虚拟dom和实际dom不一致时才会执行里面的func
+
+- 当一个功能能用watch\computed\methods实现时，优先使用computed
 ### 动态绑定class
     可以通过点击事件等触发样式的改变，用computed里面的属性来实时更改样式
 
