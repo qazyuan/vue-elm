@@ -1,6 +1,16 @@
-# yes
+# something about Vue Learning
 
-> elm-sell
+### contents
+> vue-learn
+>> vue-demo
+>>> vue-elm
+
+>>> vue-sell-demo 
+
+>> vue-notes
+>>> vue-base 
+
+>>> vue-cli
 
 ## Build Setup
 
@@ -13,9 +23,3 @@ npm run dev
 
 # build for production with minification
 npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
