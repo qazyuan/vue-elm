@@ -19,11 +19,70 @@
 - 点击事件： prevent stop once
 - 键盘事件修饰符： enter alt
 
+### 给组件绑定原生事件
+@click.native
+```
+<div id="root">
+    <child @click.native="handleClick"></child>
+</div>
+<script type="text/javascript">
+    Vue.component('child', {
+        template: '<p>dddd</p>'
+    })
+
+    new Vue({
+        el: '#root',
+        methods: {
+            handleClick: function() {
+                alert('click');
+            }
+        }
+
+    })
+</script>
+```
+
 
 ### 双向绑定 select/input/textarea
 - v-model
 - ref通过dom绑定
 
+```
+ref绑定父组件dom
+<div id="root">
+    <counter @change="changHandle" ref="num1"></counter>
+    <counter @change="changHandle" ref="num2"></counter>
+    <div ref="total">{{total}}</div>
+</div>
+Vue.component('counter', {
+    data(){
+        return {
+            number: 0
+        }
+    },
+    template: "<span @click='changeNumber'>{{number}}</span>",
+    methods: {
+        changeNumber: function () {
+            this.number++;
+            this.$emit('change');
+        }
+    }
+});
+var vm = new Vue({
+    el: '#root',
+    data: {
+        total: 0
+    },
+    methods: {
+        changHandle: function () {
+            let num1 = this.$refs.num1.number; //子组件ref取值
+            let num2 = this.$refs.num2.number;
+            let originTotal = this.$refs.total.innerText;//父组件dom取值
+            this.total = (+num1) + (+num2);
+        }
+    }
+})
+```
 
 ### 计算属性 computed
 - 计算属性和methods区别
@@ -215,15 +274,38 @@ Vue.component('greeting', {
   
         在组件内import后再component里面注册
 
+### 组件使用小细节
+- talbe\ul\select渲染小bug
+
+```
+<div id="root">
+    <table> 
+        <tbody> 
+            <tr is="row">  </tr>
+            <!--is的使用，若直接用row组件，渲染的dom为tr与table同级-->
+        </tbody>
+    </table>
+</div>
+ Vue.component('row', {
+    template: '<tr><td>this is a row</td></tr>'
+})
+var vm = new Vue({
+    el: '#root'
+})
+```
+- 子组件中data必须是一个函数，返回一个对象
+- ref操作dom
+
+
 ### css样式作用域 scoped
 
 ### 组件嵌套
 
 ### 传值问题
 - 父组件向子组件传值：属性传值
-
-        属性传值v-bind:  子组件通过props接收
-        传值和传引用的区别
+    - 属性传值v-bind:  子组件通过props接收
+    - 传值和传引用的区别
+    - 子组件不能随意更改父组件中传过来的值
         
 - 子组件向父组件传值
         
@@ -233,7 +315,164 @@ Vue.component('greeting', {
         * args: 将要传给父组件的参数
         */ 
         父组件：v-on: event = functionName()
+- 非父子组件传值
+    - vuex (待补充)
+    - 发布订阅模式(也称观察者模式\bus\总线模式)
+    
+        ```
+        <div id="root">
+            <child content="Dell"></child>
+            <child content="Yoga"></child>
+        </div>
+        <script type="text/javascript">
+            Vue.prototype.bus = new Vue();
+            Vue.component('child', {
+                props: {
+                    content: String
+                },
+                data() {
+                    return {
+                        selfContent: this.content
+                    }
+                },
+                template: "<p @click='handleChange'>{{selfContent}}</p>",
+                methods: {
+                    handleChange: function () {
+                        this.bus.$emit('change', this.content);
+                    }
+                },
+                mounted: function () {
+                    var that = this;
+                    that.bus.$on('change', function(msg) {
+                        that.selfContent = msg;
+                    })
+                }
+            })
         
+            new Vue({
+                el: '#root'
+            })
+        </script>
+        ```
+
+### vue中的插槽slot
+
+- 父组件向子组件传递dom结构
+
+```
+<div id="root1">
+    <child>
+        <p slot="header">header</p>
+        <p slot="footer">footer</p>
+    </child>
+</div>
+<script type="text/javascript">
+    Vue.component('child', {
+        template: `<div>
+                        <slot name="header"></slot>
+                        <p>World</p>
+                        <slot name="footer"></slot>
+                    </div>`
+    })
+    let vm = new Vue({
+        el: '#root1'
+    })
+</script>
+```
+- 作用域插槽 slot
+
+```
+<child>
+    <template slot-scope="props">
+        <p>{{props.item}}---{{props.index}}</p>
+    </template>
+</child>
+Vue.component('child', {
+    data() {
+        return {
+            list: [1, 2, 3, 4, 5]
+        }
+    },
+    template: `<div>
+                    <slot v-for="(item, index) in list" :item=item :index="index"></slot>
+                </div>`
+})
+```
+
+### 动态加载组件
+
+```
+<div id="root2">
+    <component :is='type'></component> 
+    <!--通过type的值的变化来选择加载哪个组件-->
+    <button @click="changeType">change</button>
+</div>
+<script type="text/javascript">
+    Vue.component('child-one', {
+        template: '<div v-once>child-one</div>'
+    })
+    Vue.component('child-two', {
+        template: '<div v-once>child-two</div>'
+        //v-onece将组件放入内存中，下次直接加载
+    })
+    new Vue({
+        el: '#root2',
+        data: {
+            type: 'child-one'
+        },
+        methods: {
+            changeType: function () {
+                this.type = (this.type === 'child-one' ? 'child-two': 'child-one');
+            }
+        }
+    })
+</script>
+```
+
+
+
+### 组件参数校验与非props特性
+
+- 组件参数校验
+```
+props: {
+    marNum: [String, Number]
+    /*限制父组件传过来的marNum的类型是数组和数字*/
+}
+
+props: {
+    marNum: {
+        type: String,
+        required: true, /*必传*/
+        default: '', /*默认值*/
+        validator: function（value) {
+            return (value.length > 5)
+        }
+    }
+}
+```
+- 非props特性
+
+```
+<div id="root">
+    <child :content="number"></child>
+</div>
+<script type="text/javascript">
+    Vue.component('child', {
+        template: '<p>dddd</p>'
+    })  
+    //子组件不接收父组件传过来的content时，在渲染dom中会生成这样的dom结构<p content="222">dddd</p>
+
+    new Vue({
+        el: '#root',
+        data: {
+            number: '222'
+        }
+    })
+</script>
+```
+
+
 
 ### vue路由
 - 配置路由
@@ -248,3 +487,7 @@ Vue.component('greeting', {
         mode: 'history'
     });
 ```
+
+
+
+    

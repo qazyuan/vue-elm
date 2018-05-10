@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>vue组件小细节</title>
+    <script type="text/javascript" src="./js/vue.js"></script>
+</head>
+<body>
+<!--
+    <div id="root">
+        <child content="Dell"></child>
+        <child content="Yoga"></child>
+    </div>
+    <script type="text/javascript">
+        Vue.prototype.bus = new Vue();
+        Vue.component('child', {
+            props: {
+                content: String
+            },
+            data() {
+                return {
+                    selfContent: this.content
+                }
+            },
+            template: "<p @click='handleChange'>{{selfContent}}</p>",
+            methods: {
+                handleChange: function () {
+                    this.bus.$emit('change', this.content);
+                }
+            },
+            mounted: function () {
+                var that = this;
+                that.bus.$on('change', function(msg) {
+                    that.selfContent = msg;
+                })
+            }
+        })
+
+        new Vue({
+            el: '#root'
+        })
+    </script> -->
+    <!-- slot 插槽 -->
+    <div id="root1">
+        <child>
+            <template slot-scope="props">
+                <p>{{props.item}}---{{props.index}}</p>
+            </template>
+        </child>
+    </div>
+    <script type="text/javascript">
+        Vue.component('child', {
+            data() {
+                return {
+                    list: [1, 2, 3, 4, 5]
+                }
+            },
+            template: `<div>
+                            <slot v-for="(item, index) in list" :item=item :index="index"></slot>
+                        </div>`
+        })
+        let vm = new Vue({
+            el: '#root1'
+        })
+    </script>
+
+    <div id="root2">
+        <component :is='type'></component>
+        <button @click="changeType">change</button>
+    </div>
+    <script type="text/javascript">
+        Vue.component('child-one', {
+            template: '<div v-once>child-one</div>'
+            // //v-onece将组件放入内存中，下次直接加载
+        })
+        Vue.component('child-two', {
+            template: '<div v-once>child-two</div>'
+        })
+        new Vue({
+            el: '#root2',
+            data: {
+                type: 'child-one'
+            },
+            methods: {
+                changeType: function () {
+                    this.type = (this.type === 'child-one' ? 'child-two': 'child-one');
+                }
+            }
+        })
+    </script>
+</body>
+</html>
