@@ -163,8 +163,40 @@ new Vue({
     }
 });
 ```
- 
+
+### vue过渡动画效果
+- 动画顺序(添加删除class)
+
+    从隐藏到显示动画添加删除的class
+    1. fade-enter fade-enter-active  
+    2. ~~fade-enter~~ fade-enter-to
+    3. ~~fade-enter-active fade-enter-to~~
     
+    从显示到隐藏动画添加删除的class
+    1. fade-leave fade-leave-active
+    2. ~~fade-leave~~ fade-leave-to
+    3. ~~fade-leave-active fade-leave-to~~
+
+- 自定义动画class名字
+animate.css库
+```
+enter-active-class="active"
+leave-active-class="leave"
+appear
+appear-active-class=""
+type=""//设置动画类型
+:duration='5000' //设置动画时长
+:duration="{enter: 5000, leave: 10000}"
+```
+- js动画函数
+    
+    velocity.js库
+    @before-enter = "" //接收el参数
+    @enter="" //接收el, done两个参数其中done为回调函数
+    @after-enter=""
+- mode多个动画切换样式
+- 多个组件过渡动画
+- transition-group
 
     
 ### 条件渲染 v-if v-else-if v-show
