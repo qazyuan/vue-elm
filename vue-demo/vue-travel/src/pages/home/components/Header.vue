@@ -1,35 +1,56 @@
 <template>
     <div class="header-wrapper">
+        <div class="back">
+            <span class="iconfont icon-jiantou1"></span>
+        </div>
         <div class="input-wrapper">
-            <i class="icon"></i>
+            <span class="iconfont icon-sousuo"></span>
             <input class="input-text" type="text" name="text" placeholder="输入城市或景点">
         </div>
-        <div class="address">北京</div>
+        <div class="address">
+            <span>北京</span>
+            <span class="iconfont icon-jiantou"></span>
+
+        </div>
     </div>
 </template>
 <script type="text/javascript">
+    // import 'styles/variables.css'
+
+    // import 'styles/variables.css'
     export default {
         name: 'Header'
     }
 </script>
-<style type="text/css">
+<style scoped>
+/*@import '../../../assets/styles/variables.css';*/
+/*@import '../../../assets/styles/iconfont.css';*/
+
     .header-wrapper {
         display: flex;
         align-items: center;
-        width: 100%;
         height: 1.15rem;
-        background: #199EAF;
+        background: #00bcd4;
         padding-left: 0.3rem;
     }
+    .back {
+        width: 0.64rem;
+    }
     .input-wrapper {
+        display: flex;
+        flex: 1;
         height: 0.75rem;
-        width: 5.5rem;
         background: #fff;
-        border: 1px solid #444;
         border-radius: 10px;
+        padding-left: 0.2rem;
+        line-height: 0.75rem;
         input {
-            line-height: 0.75rem;
+            padding-left: 0.1rem;
         }
+    }
+    .address {
+        width: 1rem;
+        padding: 0.1rem;
     }
 
 </style>
