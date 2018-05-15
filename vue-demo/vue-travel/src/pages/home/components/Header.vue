@@ -15,23 +15,21 @@
     </div>
 </template>
 <script type="text/javascript">
-    // import 'styles/variables.css'
-
-    // import 'styles/variables.css'
     export default {
         name: 'Header'
     }
 </script>
 <style scoped>
 /*@import '../../../assets/styles/variables.css';*/
-/*@import '../../../assets/styles/iconfont.css';*/
+@import '../../../assets/styles/iconfont.css';
 
     .header-wrapper {
         display: flex;
         align-items: center;
-        height: 1.15rem;
+        height: 1rem;
         background: #00bcd4;
         padding-left: 0.3rem;
+        color: #fff;
     }
     .back {
         width: 0.64rem;
@@ -39,11 +37,12 @@
     .input-wrapper {
         display: flex;
         flex: 1;
-        height: 0.75rem;
+        height: 0.5rem;
         background: #fff;
         border-radius: 10px;
         padding-left: 0.2rem;
-        line-height: 0.75rem;
+        line-height: 0.5rem;
+        color: #555;
         input {
             padding-left: 0.1rem;
         }
