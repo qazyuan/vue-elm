@@ -1,19 +1,22 @@
 <template>
     <div id="home">
-        <Header></Header>
-        <carrousel></carrousel>
+        <HomeHeader></HomeHeader>
+        <HomeSwiper></HomeSwiper>
+        <HomeIcons></HomeIcons>
         <!-- <router-link to="/list">列表页</router-link> -->
     </div>
 
 </template>
 <script>
-    import Header from './components/Header'
-    import carrousel from './components/Swiper'
+    import HomeHeader from './components/Header'
+    import HomeSwiper from './components/Swiper'
+    import HomeIcons from './components/icons'
     export default {
         name: 'Home',
         components: {
-            Header,
-            carrousel
+            HomeHeader,
+            HomeSwiper,
+            HomeIcons
         }
     }
 </script>
