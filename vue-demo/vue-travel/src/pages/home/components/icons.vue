@@ -1,12 +1,13 @@
 <template>
     <div class="icon-wrapper">
         <swiper  :options="swiperOption">
-          <swiper-slide v-for="(page, index) of pages" :key="index">
+            <swiper-slide v-for="(page, index) of pages" :key="index">
                 <div class="icon" v-for="item of page">
                     <img :src="item.url">
                     <p>{{item.text}}</p>
                 </div>
-          </swiper-slide>
+            </swiper-slide>
+            <div class="swiper-pagination" slot="pagination"></div>
         </swiper>
     </div>
 </template>
@@ -54,9 +55,9 @@ export default {
                 }
             ],
             swiperOption: {
-                // pagination: {
-                //     el: '.swiper-pagination'
-                // },
+                pagination: {
+                    el: '.swiper-pagination'
+                }
                 // loop: true
             }
         }

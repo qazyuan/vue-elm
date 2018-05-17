@@ -11,7 +11,7 @@
 
 <script>
   export default {
-    name: 'carrousel',
+    name: 'HomeSwiper',
     data() {
       return {
         swiperOption: {
