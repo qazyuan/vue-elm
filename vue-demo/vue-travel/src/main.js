@@ -6,7 +6,7 @@ import router from './router'
 import fastClick from 'fastClick'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 
-import 'swiper/dist/css/swiper.css'
+import './assets/styles/swiper.css'
 import './assets/styles/reset.css'
 
 Vue.use(VueAwesomeSwiper, /* { default global options } */)

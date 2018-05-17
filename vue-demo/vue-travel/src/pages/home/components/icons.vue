@@ -1,14 +1,24 @@
 <template>
-    <div class="icon-wrapper">
-        <swiper  :options="swiperOption">
-            <swiper-slide v-for="(page, index) of pages" :key="index">
-                <div class="icon" v-for="item of page">
-                    <img :src="item.url">
-                    <p>{{item.text}}</p>
-                </div>
-            </swiper-slide>
-            <div class="swiper-pagination" slot="pagination"></div>
-        </swiper>
+    <div>
+        <div class="icon-wrapper">
+            <swiper  :options="swiperOption">
+                <swiper-slide v-for="(page, index) of pages" :key="index">
+                    <div class="icon" v-for="item of page">
+                        <img :src="item.url">
+                        <p>{{item.text}}</p>
+                    </div>
+                </swiper-slide>
+                <div class="swiper-pagination" slot="pagination"></div>
+            </swiper>
+        </div>
+        <div class="bottom-icon">
+            <div class="address">
+                <span class="iconfont icon-location"></span>定位
+            </div>
+            <div class="ads">
+                <span class="iconfont icon-icon35"></span>
+            五折泡温泉</div>
+        </div>
     </div>
 </template>
 <script type="text/javascript">
@@ -78,10 +88,11 @@ export default {
 }
 </script>
 <style type="text/css" scoped>
+    @import '../../../assets/styles/iconfont.css';
     .icon-wrapper {
         width: 100%;
         height: 0;
-        padding-bottom: 35%;
+        padding-bottom: 50%;
         .icon {
             float: left;
             width: 25%;
@@ -105,6 +116,30 @@ export default {
                 text-overflow: ellipsis;
                 white-space: nowrap;
             }
+        }
+    }
+    .bottom-icon {
+        width: 100%;
+        height: 0.98rem;
+        display: flex;
+        align-items: center;
+
+        border-top: 1px solid #ccc;
+        div {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content:center;
+            line-height: 0.98rem;
+            border-right: 1px solid #ccc;
+        }
+        .iconfont  {
+            display: block;
+            width: 0.5rem;
+            font-size: 0.36rem;
+        }
+        div:last-child {
+            border: none;
         }
     }
 </style>
