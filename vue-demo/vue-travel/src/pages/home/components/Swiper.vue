@@ -21,8 +21,8 @@
           loop: true
         },
         swiperSlides: [
-          'https://img1.qunarzz.com/vc/29/31/b4/20fb7d1ad6e24362882319cbfb.jpg_750x388x92.jpg',
-          'https://img1.qunarzz.com/vc/af/f4/45/4756cd165e1462610598ceb201.png'
+          'http://img1.qunarzz.com/piao/fusion/1804/f2/91b285a08ee21c02.jpg_750x200_8a73fd08.jpg',
+          'http://img1.qunarzz.com/piao/fusion/1805/77/f63bd04dd5319602.jpg_750x200_6ba8e0ca.jpg'
         ]
       }
     }
@@ -37,7 +37,7 @@
     overflow: hidden;
     width: 100%;
     height: 0;
-    padding-bottom: 51.7%;
+    padding-bottom: 26.7%;
     background: #eee;
     .swiper-img {
       width: 100%;

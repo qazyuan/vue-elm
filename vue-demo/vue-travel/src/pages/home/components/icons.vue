@@ -18,39 +18,39 @@ export default {
             swiperSlides: [
                 {
                     'text': '经典门票1',
-                    'url': 'https://img1.qunarzz.com/vc/af/f4/45/4756cd165e1462610598ceb201.png'
+                    'url': 'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png'
                 },
                 {
                     'text': '经典门票2',
-                    'url': 'https://img1.qunarzz.com/vc/af/f4/45/4756cd165e1462610598ceb201.png'
+                    'url': 'http://img1.qunarzz.com/piao/fusion/1804/5a/13ceb38dcf262f02.png'
                 },
                 {
                     'text': '经典门票3',
-                    'url': 'https://img1.qunarzz.com/vc/af/f4/45/4756cd165e1462610598ceb201.png'
+                    'url': 'http://img1.qunarzz.com/piao/fusion/1803/76/eb88861d78fb9902.png'
                 },
                 {
                     'text': '经典门票4',
-                    'url': 'https://img1.qunarzz.com/vc/af/f4/45/4756cd165e1462610598ceb201.png'
+                    'url': 'http://img1.qunarzz.com/piao/fusion/1803/b1/528a9e80403b8c02.png'
                 },
                 {
                     'text': '经典门票11',
-                    'url': 'https://img1.qunarzz.com/vc/af/f4/45/4756cd165e1462610598ceb201.png'
+                    'url': 'http://img1.qunarzz.com/piao/fusion/1803/b6/37560ece9c62b502.png'
                 },
                 {
                     'text': '经典门票22',
-                    'url': 'https://img1.qunarzz.com/vc/af/f4/45/4756cd165e1462610598ceb201.png'
+                    'url': 'http://img1.qunarzz.com/piao/fusion/1803/76/eb88861d78fb9902.png'
                 },
                 {
                     'text': '经典门票33',
-                    'url': 'https://img1.qunarzz.com/vc/af/f4/45/4756cd165e1462610598ceb201.png'
+                    'url': 'http://img1.qunarzz.com/piao/fusion/1804/5a/13ceb38dcf262f02.png'
                 },
                 {
                     'text': '经典门票44',
-                    'url': 'https://img1.qunarzz.com/vc/af/f4/45/4756cd165e1462610598ceb201.png'
+                    'url': 'http://img1.qunarzz.com/piao/fusion/1803/bd/9f7b9b2b60c1502.png'
                 },
                 {
                     'text': '经典门票99',
-                    'url': 'https://img1.qunarzz.com/vc/af/f4/45/4756cd165e1462610598ceb201.png'
+                    'url': 'http://img1.qunarzz.com/piao/fusion/1804/5a/13ceb38dcf262f02.png'
                 }
             ],
             swiperOption: {
@@ -62,7 +62,7 @@ export default {
         }
     },
     computed: {
-        pages () {
+        pages () { //对轮播进行分页处理
             const pages = [];
             this.swiperSlides.forEach((item, index) => {
                 const page = Math.floor(index / 8);
@@ -92,12 +92,17 @@ export default {
             justify-content:center;
             align-items:center;/*垂直居中*/
             img {
-                width: 0.7rem;
-                height: 0.7rem;
+                width: 1.1rem;
+                height: 1.1rem;
             }
             p {
+                width: 100%;
+                text-align: center;
                 padding-top: 0.1rem;
-                font-size: 0.12rem;
+                font-size: 0.28rem;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
             }
         }
     }

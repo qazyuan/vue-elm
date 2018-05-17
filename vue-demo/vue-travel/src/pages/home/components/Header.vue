@@ -37,11 +37,11 @@
     .input-wrapper {
         display: flex;
         flex: 1;
-        height: 0.5rem;
+        height: 0.6rem;
         background: #fff;
-        border-radius: 10px;
+        border-radius: 0.06rem;
         padding-left: 0.2rem;
-        line-height: 0.5rem;
+        line-height: 0.6rem;
         color: #555;
         input {
             padding-left: 0.1rem;
