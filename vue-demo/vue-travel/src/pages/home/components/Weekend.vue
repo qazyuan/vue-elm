@@ -1,7 +1,7 @@
 <template>
     <div v-if="recommendList.length > 0">
         <div class="title">
-            <span>猜你喜欢</span>
+            <span>周末去哪</span>
         </div>
         <div class="list-wrapper" v-for="(item, index) in recommendList">
             <div class="img-wrapper">
@@ -10,14 +10,6 @@
             </div>
             <div class="text-wrapper">
                 <div class="name">{{item.name}}</div>
-                <div class="score">
-                    <Star :score="item.star">{{item.star}}</Star>
-                    <span class="comment">{{item.comment}}条评论</span>
-                </div>
-                <div class="price">
-                    <span class="price-font">￥<em>{{item.price}}</em></span>起
-                    <span class="address">{{item.address}}</span>
-                </div>
                 <span class="feature">{{item.desc}}</span>
             </div>
         </div>
@@ -83,16 +75,16 @@ export default {
     height: 0.8rem;
     line-height: 0.8rem;
     padding-left: 0.26rem;
+    background: #eee;
 }
 .list-wrapper {
     padding: 0.2rem;
-    display: flex;
     font-size: 0.12rem;
     .img-wrapper {
         position: relative;
         img {
             display: block;
-            width: 2rem;
+            width: 100%;
             height: 2rem;
         }
         span {
@@ -110,39 +102,17 @@ export default {
         flex: 1;
         padding-left: 0.22rem;
         .name {
-            margin-top: 0.26rem;
-            font-size: 0.32rem;
+            margin-top: 0.2rem;
+            font-size: 0.28rem;
             color: #212121;
-            line-height: 0.44rem;
-        }
-        .score {
-            margin-top: 0.14rem;
-            display: flex;
-        }
-        .comment {
-            padding-left: 0.3rem;
-        }
-        .price {
-            position: relative;
-            margin-top: 0.22rem;
-        }
-        .price-font {
-            color: #ff8300;
-            em {
-                font-style: none;
-                font-size: 0.4rem;
-            }
-        }
-        .address {
-            position: absolute;
-            right: 0;
-            line-height: 0.62rem;
+            line-height: 0.48rem;
         }
         .feature{
             display: inline-block;
-            margin-top: 0.48rem;
-            background: #fff9f9;
-            color: #f55;
+            margin-top: 0.1rem;
+            color: #616161;
+            font-size: 0.24rem;
+            line-height: 0.42rem;
         }
 
     }

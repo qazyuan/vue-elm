@@ -5,6 +5,7 @@
         <HomeIcons></HomeIcons>
         <Gap></Gap>
         <HomeRecomend></HomeRecomend>
+        <Weekend></Weekend>
         <!-- <router-link to="/list">列表页</router-link> -->
     </div>
 
@@ -15,6 +16,7 @@ import HomeSwiper from './components/Swiper'
 import HomeIcons from './components/Icons'
 import Gap from '../common/Gap'
 import HomeRecomend from './components/Recommend'
+import Weekend from './components/Weekend'
 export default {
     name: 'Home',
     components: {
@@ -22,7 +24,8 @@ export default {
         HomeSwiper,
         HomeIcons,
         Gap,
-        HomeRecomend
+        HomeRecomend,
+        Weekend
     }
 }
 </script>
