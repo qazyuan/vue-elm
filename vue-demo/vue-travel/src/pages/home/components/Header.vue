@@ -8,9 +8,8 @@
             <input class="input-text" type="text" name="text" placeholder="输入城市或景点">
         </div>
         <div class="address">
-            <span>{{city}}</span>
+            <router-link to="/city">{{city}}</router-link>
             <span class="iconfont icon-jiantou"></span>
-
         </div>
     </div>
 </template>
@@ -33,6 +32,9 @@
         background: #00bcd4;
         padding-left: 0.3rem;
         color: #fff;
+        a {
+            color: #fff;
+        }
     }
     .back {
         width: 0.64rem;

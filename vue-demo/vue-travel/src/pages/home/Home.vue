@@ -6,7 +6,6 @@
         <Gap></Gap>
         <HomeRecomend :recommendList="recommendList"></HomeRecomend>
         <Weekend :weekendList="weekendList"></Weekend>
-        <!-- <router-link to="/list">列表页</router-link> -->
     </div>
 
 </template>
