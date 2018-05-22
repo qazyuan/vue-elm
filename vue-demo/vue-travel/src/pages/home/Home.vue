@@ -1,11 +1,11 @@
 <template>
     <div id="home">
-        <HomeHeader></HomeHeader>
-        <HomeSwiper></HomeSwiper>
-        <HomeIcons></HomeIcons>
+        <HomeHeader :city="city"></HomeHeader>
+        <HomeSwiper :swiperList = 'swiperList'></HomeSwiper>
+        <HomeIcons :iconList = 'iconList'></HomeIcons>
         <Gap></Gap>
-        <HomeRecomend></HomeRecomend>
-        <Weekend></Weekend>
+        <HomeRecomend :recommendList="recommendList"></HomeRecomend>
+        <Weekend :weekendList="weekendList"></Weekend>
         <!-- <router-link to="/list">列表页</router-link> -->
     </div>
 
@@ -17,6 +17,7 @@ import HomeIcons from './components/Icons'
 import Gap from '../common/Gap'
 import HomeRecomend from './components/Recommend'
 import Weekend from './components/Weekend'
+import axios from 'axios'
 export default {
     name: 'Home',
     components: {
@@ -26,6 +27,34 @@ export default {
         Gap,
         HomeRecomend,
         Weekend
+    },
+    data () {
+        return {
+            iconList: [],
+            recommendList: [],
+            weekendList: [],
+            swiperList: [],
+            city: ''
+        }
+    },
+    methods: {
+        getHomeInfo () {
+            axios.get('/api/index.json')
+            .then(this.getHomeInfoSucc)
+        },
+        getHomeInfoSucc (res) {
+            if (res.data.data) {
+                var data = res.data.data;
+                this.iconList = data.iconList;
+                this.recommendList = data.recommendList;
+                this.weekendList = data.weekendList;
+                this.swiperList = data.swiperList;
+                this.city = data.city;
+            };
+        }
+    },
+    mounted () {
+        this.getHomeInfo()
     }
 }
 </script>

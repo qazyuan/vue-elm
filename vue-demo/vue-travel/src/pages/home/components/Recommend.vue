@@ -5,14 +5,14 @@
         </div>
         <div class="list-wrapper" v-for="(item, index) in recommendList">
             <div class="img-wrapper">
-                <img :src="item.url">
+                <img :src="item.imgUrl">
                 <span :style="{background: bgColor[item.type]}">{{typeText[item.type]}}</span>
             </div>
             <div class="text-wrapper">
-                <div class="name">{{item.name}}</div>
+                <div class="name">{{item.title}}</div>
                 <div class="score">
-                    <Star :score="item.star">{{item.star}}</Star>
-                    <span class="comment">{{item.comment}}条评论</span>
+                    <Star v-if="item.star && item.star > 0" :score="item.star">{{item.star}}</Star>
+                    <span v-if="item.comment && item.comment > 0" class="comment">{{item.comment}}条评论</span>
                 </div>
                 <div class="price">
                     <span class="price-font">￥<em>{{item.price}}</em></span>起
@@ -27,40 +27,13 @@
 import Star from '../../common/Star'
 export default {
     name: 'Recommend',
+    props: {
+        recommendList: {
+            type: Array
+        }
+    },
     data () {
         return {
-            recommendList: [
-                {
-                    'url': 'http://img1.qunarzz.com/sight/p0/1803/1a/1aac2b1dd96b36ba3.water.jpg_200x200_8148509f.jpg',
-                    'type': 1,
-                    'name': '上海欢乐谷',
-                    'star': 4.5,
-                    'comment': 1000,
-                    'price': 778.9,
-                    'address': '浦东心前区',
-                    'desc': '穿越世界，来一次终生难忘的海洋之旅'
-                },
-                {
-                    'url': 'http://img1.qunarzz.com/sight/p0/1803/1a/1aac2b1dd96b36ba3.water.jpg_200x200_8148509f.jpg',
-                    'type': 2,
-                    'name': '上海欢乐谷',
-                    'star': 2.5,
-                    'comment': 1000,
-                    'price': 778.9,
-                    'address': '浦东心前区',
-                    'desc': '穿越世界，来一次终生难忘的海洋之旅'
-                },
-                {
-                    'url': 'http://img1.qunarzz.com/sight/p0/1803/1a/1aac2b1dd96b36ba3.water.jpg_200x200_8148509f.jpg',
-                    'type': 3,
-                    'name': '上海欢乐谷',
-                    'star': 4,
-                    'comment': 1000,
-                    'price': 778.9,
-                    'address': '浦东心前区',
-                    'desc': '穿越世界，来一次终生难忘的海洋之旅'
-                }
-            ],
             typeText: {
                 '1': '随买随用',
                 '2': '只限今日',

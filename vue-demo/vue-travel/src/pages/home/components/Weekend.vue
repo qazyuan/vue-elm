@@ -1,15 +1,15 @@
 <template>
-    <div v-if="recommendList.length > 0">
+    <div v-if="weekendList.length > 0">
         <div class="title">
             <span>周末去哪</span>
         </div>
-        <div class="list-wrapper" v-for="(item, index) in recommendList">
+        <div class="list-wrapper" v-for="(item, index) in weekendList">
             <div class="img-wrapper">
-                <img :src="item.url">
+                <img :src="item.imgUrl">
                 <span :style="{background: bgColor[item.type]}">{{typeText[item.type]}}</span>
             </div>
             <div class="text-wrapper">
-                <div class="name">{{item.name}}</div>
+                <div class="name">{{item.title}}</div>
                 <span class="feature">{{item.desc}}</span>
             </div>
         </div>
@@ -18,41 +18,14 @@
 <script type="text/javascript">
 import Star from '../../common/Star'
 export default {
-    name: 'Recommend',
+    name: 'Weekend',
+    props: {
+        weekendList: {
+            type: Array
+        }
+    },
     data () {
         return {
-            recommendList: [
-                {
-                    'url': 'http://img1.qunarzz.com/sight/source/1603/6d/2f67ae0659f41f.jpg_r_640x214_bf6cbd0b.jpg',
-                    'type': 1,
-                    'name': '上海欢乐谷',
-                    'star': 4.5,
-                    'comment': 1000,
-                    'price': 778.9,
-                    'address': '浦东心前区',
-                    'desc': '穿越世界，来一次终生难忘的海洋之旅'
-                },
-                {
-                    'url': 'http://img1.qunarzz.com/sight/source/1505/aa/7baaf8a851d221.jpg_r_640x214_1431200f.jpg',
-                    'type': 2,
-                    'name': '上海欢乐谷',
-                    'star': 2.5,
-                    'comment': 1000,
-                    'price': 778.9,
-                    'address': '浦东心前区',
-                    'desc': '穿越世界，来一次终生难忘的海洋之旅'
-                },
-                {
-                    'url': 'http://img1.qunarzz.com/sight/source/1505/ce/bc89bc2f0e33ea.jpg_r_640x214_3e408453.jpg',
-                    'type': 3,
-                    'name': '上海欢乐谷',
-                    'star': 4,
-                    'comment': 1000,
-                    'price': 778.9,
-                    'address': '浦东心前区',
-                    'desc': '穿越世界，来一次终生难忘的海洋之旅'
-                }
-            ],
             typeText: {
                 '1': '随买随用',
                 '2': '只限今日',

@@ -4,8 +4,8 @@
             <swiper  :options="swiperOption">
                 <swiper-slide v-for="(page, index) of pages" :key="index">
                     <div class="icon" v-for="item of page">
-                        <img :src="item.url">
-                        <p>{{item.text}}</p>
+                        <img :src="item.imgUrl">
+                        <p>{{item.desc}}</p>
                     </div>
                 </swiper-slide>
                 <div class="swiper-pagination" slot="pagination"></div>
@@ -24,46 +24,13 @@
 <script type="text/javascript">
 export default {
     name: 'HomeIcons',
+    props: {
+        iconList: {
+            type: Array
+        }
+    },
     data () {
         return {
-            swiperSlides: [
-                {
-                    'text': '经典门票1',
-                    'url': 'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png'
-                },
-                {
-                    'text': '经典门票2',
-                    'url': 'http://img1.qunarzz.com/piao/fusion/1804/5a/13ceb38dcf262f02.png'
-                },
-                {
-                    'text': '经典门票3',
-                    'url': 'http://img1.qunarzz.com/piao/fusion/1803/76/eb88861d78fb9902.png'
-                },
-                {
-                    'text': '经典门票4',
-                    'url': 'http://img1.qunarzz.com/piao/fusion/1803/b1/528a9e80403b8c02.png'
-                },
-                {
-                    'text': '经典门票11',
-                    'url': 'http://img1.qunarzz.com/piao/fusion/1803/b6/37560ece9c62b502.png'
-                },
-                {
-                    'text': '经典门票22',
-                    'url': 'http://img1.qunarzz.com/piao/fusion/1803/76/eb88861d78fb9902.png'
-                },
-                {
-                    'text': '经典门票33',
-                    'url': 'http://img1.qunarzz.com/piao/fusion/1804/5a/13ceb38dcf262f02.png'
-                },
-                {
-                    'text': '经典门票44',
-                    'url': 'http://img1.qunarzz.com/piao/fusion/1803/bd/9f7b9b2b60c1502.png'
-                },
-                {
-                    'text': '经典门票99',
-                    'url': 'http://img1.qunarzz.com/piao/fusion/1804/5a/13ceb38dcf262f02.png'
-                }
-            ],
             swiperOption: {
                 pagination: {
                     el: '.swiper-pagination'
@@ -75,7 +42,7 @@ export default {
     computed: {
         pages () { //对轮播进行分页处理
             const pages = [];
-            this.swiperSlides.forEach((item, index) => {
+            this.iconList.forEach((item, index) => {
                 const page = Math.floor(index / 8);
                 if (!pages[page]) {
                     pages[page] = [];
@@ -92,7 +59,7 @@ export default {
     .icon-wrapper {
         width: 100%;
         height: 0;
-        padding-bottom: 50%;
+        padding-bottom: 45%;
         .icon {
             float: left;
             width: 25%;
@@ -104,8 +71,8 @@ export default {
             justify-content:center;
             align-items:center;/*垂直居中*/
             img {
-                width: 1.1rem;
-                height: 1.1rem;
+                width: 0.8rem;
+                height: 0.8rem;
             }
             p {
                 width: 100%;

@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper">
-    <swiper  :options="swiperOption">
-      <swiper-slide v-for="(slide, index) in swiperSlides" :key="index">
-          <img class="swiper-img" :src="slide">
+    <swiper  :options="swiperOption" v-if="showSwiper">
+      <swiper-slide v-for="(slide, index) in swiperList" :key="slide.id">
+          <img class="swiper-img" :src="slide.imgUrl">
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
@@ -10,23 +10,29 @@
 </template>
 
 <script>
-  export default {
+export default {
     name: 'HomeSwiper',
-    data() {
-      return {
-        swiperOption: {
-          pagination: {
-            el: '.swiper-pagination'
-          },
-          loop: true
-        },
-        swiperSlides: [
-          'http://img1.qunarzz.com/piao/fusion/1804/f2/91b285a08ee21c02.jpg_750x200_8a73fd08.jpg',
-          'http://img1.qunarzz.com/piao/fusion/1805/77/f63bd04dd5319602.jpg_750x200_6ba8e0ca.jpg'
-        ]
+    props: {
+        swiperList: {
+            type: Array
+        }
+    },
+    data () {
+        return {
+            swiperOption: {
+                pagination: {
+                    el: '.swiper-pagination'
+                },
+                loop: true
+            }
+        }
+    },
+    computed: {
+      showSwiper: function () {
+        return this.swiperList.length;
       }
     }
-  }
+}
 </script>
 
 <style type="text/css">
@@ -37,7 +43,7 @@
     overflow: hidden;
     width: 100%;
     height: 0;
-    padding-bottom: 26.7%;
+    padding-bottom: 31.2%;
     background: #eee;
     .swiper-img {
       width: 100%;

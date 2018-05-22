@@ -8,7 +8,7 @@
             <input class="input-text" type="text" name="text" placeholder="输入城市或景点">
         </div>
         <div class="address">
-            <span>北京</span>
+            <span>{{city}}</span>
             <span class="iconfont icon-jiantou"></span>
 
         </div>
@@ -16,7 +16,10 @@
 </template>
 <script type="text/javascript">
     export default {
-        name: 'Header'
+        name: 'Header',
+        props: {
+            city: String
+        }
     }
 </script>
 <style scoped>
