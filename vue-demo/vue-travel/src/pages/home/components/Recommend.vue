@@ -85,7 +85,7 @@ export default {
     padding-left: 0.26rem;
 }
 .list-wrapper {
-    padding: 0.2rem 0.2rem 0;
+    padding: 0.2rem;
     display: flex;
     font-size: 0.12rem;
     .img-wrapper {
