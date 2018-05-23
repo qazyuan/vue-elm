@@ -33,7 +33,8 @@ export default {
             return aletter;
         }
     },
-    created () {
+    updated () {
+        // console.log(refs['A']);
         this.startY = this.$refs['A'][0].offsetTop;
     },
     methods: {
@@ -47,15 +48,14 @@ export default {
             if (this.touchStatus) {
                 if (this.timer) {
                     clearTimeout(this.timer);
-                } else {
-                    setTimeout(() => {
-                        let touchY = e.touches[0].clientY;
-                        let index = Math.floor((touchY - this.startY)/20);
-                        if (index >= 0 && index < this.letters.length) {
-                            this.$emit('change', this.letters[index]);
-                        }
-                    }, 16);
                 }
+                this.timer = setTimeout(() => {
+                    let touchY = e.touches[0].clientY;
+                    let index = Math.floor((touchY - this.startY) / 20);
+                    if (index >= 0 && index < this.letters.length) {
+                        this.$emit('change', this.letters[index]);
+                    }
+                }, 20);
             }
         },
         endHandle () {
