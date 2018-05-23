@@ -1,6 +1,12 @@
 <template>
     <div class="letter-wrapper">
-        <p class="item" :class="curIndex == index ? 'current' : ''" v-for="(item, key, index) in cities" @click="cliLetter(index)">{{key}}</p>
+        <p class="item"
+        @click="clickHandler(key)"
+        @touchstart = "startHandle"
+        @touchmove = "moveHandle"
+        @touchend = "endHandle"
+        :ref="key"
+        v-for="(key, index) in letters">{{key}}</p>
     </div>
 </template>
 <script>
@@ -9,17 +15,42 @@ export default {
     props: {
         cities: {
             type: Object
-        },
-        curIndex: {
-            type: Number
+        }
+    },
+    data () {
+        return {
+            touchStatus: false
+        }
+    },
+    computed: {
+        letters: function () {
+            let aletter = [];
+            for (let i in this.cities) {
+                aletter.push(i);
+            }
+            return aletter;
         }
     },
     methods: {
-        cliLetter (index) {
-            this.$emit('LClick', index);
+        clickHandler (key) {
+            this.$emit('change', key);
+        },
+        startHandle () {
+            this.touchStatus = true;
+        },
+        moveHandle (e) {
+            if (this.touchStatus) {
+                const startY = this.$refs['A'][0].offsetTop;
+                let touchY = e.touches[0].clientY;
+                let index = Math.floor((touchY - startY)/20);
+                this.$emit('change', this.letters[index]);
+            }
+        },
+        endHandle () {
+            this.touchStatus = false;
         }
     }
-}
+};
 </script>
 <style type="text/css" scoped>
 .letter-wrapper {

@@ -2,8 +2,8 @@
     <div>
         <city-header></city-header>
         <city-search></city-search>
-        <city-list :hotCities="hotCities" :cities="cities"></city-list>
-        <!-- <city-letter @LClick="clickLetter" :cities="cities"></city-letter> -->
+        <city-list :letter="letter" :hotCities="hotCities" :cities="cities"></city-list>
+        <city-letter @change="getLetter" :cities="cities"></city-letter>
     </div>
 
 </template>
@@ -25,8 +25,8 @@ export default {
         return {
             hotCities: [],
             cities: {},
-            scrollY: 0
-        }
+            letter: ''
+        };
     },
     methods: {
         getCityInfo () {
@@ -40,6 +40,9 @@ export default {
                         }
                     }
                 )
+        },
+        getLetter (key) {
+            this.letter = key;
         }
     },
     mounted () {
