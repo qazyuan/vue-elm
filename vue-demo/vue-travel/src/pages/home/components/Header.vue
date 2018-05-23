@@ -14,12 +14,12 @@
     </div>
 </template>
 <script type="text/javascript">
-    export default {
-        name: 'Header',
-        props: {
-            city: String
-        }
+export default {
+    name: 'Header',
+    props: {
+        city: String
     }
+}
 </script>
 <style scoped>
 /*@import '../../../assets/styles/variables.css';*/

@@ -1,21 +1,49 @@
 <template>
     <div>
         <city-header></city-header>
-        <tab></tab>
-        <List></List>
+        <city-search></city-search>
+        <city-list :hotCities="hotCities" :cities="cities"></city-list>
+        <!-- <city-letter @LClick="clickLetter" :cities="cities"></city-letter> -->
     </div>
 
 </template>
 <script>
 import CityHeader from './components/Header'
-import Tab from './components/Tab'
-import List from './components/List'
+import CitySearch from './components/Search'
+import CityList from './components/List'
+import CityLetter from './components/Letter'
+import axios from 'axios'
 export default {
     name: 'City',
     components: {
         CityHeader,
-        Tab,
-        List
+        CitySearch,
+        CityList,
+        CityLetter
+    },
+    data () {
+        return {
+            hotCities: [],
+            cities: {},
+            scrollY: 0
+        }
+    },
+    methods: {
+        getCityInfo () {
+            axios.get('/api/city.json')
+                .then(
+                    res => {
+                        if (res.data.data) {
+                            var data = res.data.data;
+                            this.hotCities = data.hotCities;
+                            this.cities = data.cities;
+                        }
+                    }
+                )
+        }
+    },
+    mounted () {
+        this.getCityInfo ();
     }
 }
 </script>
