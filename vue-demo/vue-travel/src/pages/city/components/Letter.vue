@@ -19,7 +19,9 @@ export default {
     },
     data () {
         return {
-            touchStatus: false
+            touchStatus: false,
+            timer: null,
+            startY: 0
         }
     },
     computed: {
@@ -31,6 +33,9 @@ export default {
             return aletter;
         }
     },
+    created () {
+        this.startY = this.$refs['A'][0].offsetTop;
+    },
     methods: {
         clickHandler (key) {
             this.$emit('change', key);
@@ -40,10 +45,17 @@ export default {
         },
         moveHandle (e) {
             if (this.touchStatus) {
-                const startY = this.$refs['A'][0].offsetTop;
-                let touchY = e.touches[0].clientY;
-                let index = Math.floor((touchY - startY)/20);
-                this.$emit('change', this.letters[index]);
+                if (this.timer) {
+                    clearTimeout(this.timer);
+                } else {
+                    setTimeout(() => {
+                        let touchY = e.touches[0].clientY;
+                        let index = Math.floor((touchY - this.startY)/20);
+                        if (index >= 0 && index < this.letters.length) {
+                            this.$emit('change', this.letters[index]);
+                        }
+                    }, 16);
+                }
             }
         },
         endHandle () {
