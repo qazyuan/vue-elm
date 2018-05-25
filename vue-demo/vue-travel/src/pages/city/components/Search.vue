@@ -6,9 +6,11 @@
                 <input v-model="searchVal" class="input-text" type="text" name="text" placeholder="输入城市或景点">
             </div>
         </div>
-        <div class="search-result" v-if="searchVal" ref="resultList">
-            <div class="result-wrapper">
-                <div class="item" v-for="item in results">{{item}}</div>
+        <div class="search-result" v-show="searchVal" ref="resultList">
+            <div class="results">
+                <div class="result-wrapper">
+                    <div class="item" v-for="item in results">{{item}}</div>
+                </div>
             </div>
         </div>
     </div>
@@ -36,6 +38,10 @@ export default {
             if (this.timer) {
                 clearTimeout(this.timer);
             }
+            if (!this.searchVal) {
+                this.results = [];
+                return;
+            }
             this.timer = setTimeout(() => {
                 this.results = [];
                 for (var item in this.cities) {
@@ -52,7 +58,7 @@ export default {
         }
     },
     mounted () {
-        this.scroll = new BScroll(this.$refs.resultList);
+        // this.scroll = new BScroll(this.$refs.resultList);
     }
 }
 
@@ -88,6 +94,11 @@ export default {
         overflow: hidden;
         z-index: 12;
         background: #eee;
+        .results {
+            position: relative;
+            height: 100%;
+            overflow: scroll;
+        }
         .item {
             float: left;
             height: 0.5rem;
@@ -98,14 +109,12 @@ export default {
             text-align: center;
             background: #fff;
             border: 1px solid #eee;
-            overflow: hidden;
+            /*overflow: hidden;*/
             text-overflow: ellipsis;
             white-space: nowrap;
         }
     }
      .result-wrapper {
         width: 100%;
-        height: 100%;
-        overflow: hidden;
     }
 </style>
